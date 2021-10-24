@@ -40,7 +40,7 @@ defmodule Fit do
       end
     do_read_messages(fit, data)
   end
-  defp do_read_messages(%__MODULE__{} = fit, <<@special::1, _local_message_type::2, _time_offset::5, data::binary>>, fit) do
+  defp do_read_messages(%__MODULE__{} = fit, <<@special::1, _local_message_type::2, _time_offset::5, data::binary>>) do
     dump = BikeDataConvertor.Debugging.hexdump(data, 64)
     IO.puts "Non-normal field:\n#{dump}"
     exit(1)
