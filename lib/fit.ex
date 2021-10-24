@@ -2,7 +2,6 @@ defmodule Fit do
   defstruct ~w(header definitions messages crc)a
 
   @normal 0
-  @special 1
   @message_record 0
   @definition_record 1
 
@@ -38,12 +37,6 @@ defmodule Fit do
         @definition_record ->
           Fit.MessageDefinition.from_binary(fit, header, data)
       end
-    do_read_messages(fit, data)
-  end
-  defp do_read_messages(%__MODULE__{} = fit, <<@special::1, _local_message_type::2, _time_offset::5, data::binary>>) do
-    dump = BikeDataConvertor.Debugging.hexdump(data, 64)
-    IO.puts "Non-normal field:\n#{dump}"
-    exit(1)
     do_read_messages(fit, data)
   end
 end
