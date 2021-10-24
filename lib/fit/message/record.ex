@@ -164,7 +164,7 @@ defmodule Fit.Message.Record do
   def to_gpx(%__MODULE__{} = record) do
     lat = record.position_lat / @coordinate_scaling
     lon = record.position_long / @coordinate_scaling
-    ele = record.altitude / 10.0 + @altitude_correction
+    ele = (record.altitude - 3000) * 0.18652265 + 93
     time = DateTime.from_unix!(@timestamp_offset + record.timestamp)
     speed = record.speed / 100.0
     power = record.power
