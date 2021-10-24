@@ -157,7 +157,6 @@ defmodule Fit.Message.Record do
   # 63106560
   @timestamp_offset 631065600
   @coordinate_scaling Integer.pow(2, 32) / 360.0
-  @altitude_correction -195.3
 
   def fields, do: @fields
 

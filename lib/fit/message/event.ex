@@ -17,32 +17,6 @@ defmodule Fit.Message.Event do
     timestamp
   )a
 
-  """
-  @data_type ~w(
-    timer_trigger
-    course_point_index
-    battery_level
-    virtual_partner_speed
-    hr_high_alert
-    hr_low_alert
-    speed_high_alert
-    speed_low_alert
-    cad_high_alert
-    cad_low_alert
-    power_high_alert
-    power_low_alert
-    time_duration_alert
-    distance_duration_alert
-    calorie_duration_alert
-    fitness_equipment_state
-    sport_point
-    gear_change_data
-    rider_position
-    comm_timeout
-    radar_threat_alert
-  )
-  """
-
   @fields [
     %{number: 0x00, name: :event, type: :event},
     %{number: 0x01, name: :event_type, type: :event_type},
