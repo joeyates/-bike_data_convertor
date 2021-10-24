@@ -156,7 +156,7 @@ defmodule Fit.Message.Record do
   # iex(4)> DateTime.new!(~D[1989-12-31], ~T[00:00:00.000], "Etc/UTC") |> DateTime.to_unix()
   # 63106560
   @timestamp_offset 631065600
-  @coordinate_scaling 11_930_455.0
+  @coordinate_scaling Integer.pow(2, 32) / 360.0
   @altitude_correction -195.3
 
   def fields, do: @fields
