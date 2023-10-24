@@ -5,8 +5,6 @@ defmodule BikeDataConvertor.Fit2Gpx.CLI do
 
   defstruct ~w(destination dry_run quiet source verbose)a
 
-  require Logger
-
   @switches [
     destination: :string,
     dry_run: :boolean,
@@ -27,10 +25,10 @@ defmodule BikeDataConvertor.Fit2Gpx.CLI do
         ) do
       {:ok, options, []} ->
         convert(options)
-        {:ok}
+        0
       {:error, message} ->
-        Logger.error message
-        exit(1)
+        IO.puts "Error: #{message}"
+        1
     end
   end
 
