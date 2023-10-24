@@ -3,7 +3,6 @@ defmodule BikeDataConvertor.CLI do
 
   @impl Bakeware.Script
   def main(args) do
-    IO.inspect(args)
-    0
+    BikeDataConvertor.Fit2Gpx.CLI.run(args)
   end
 end
