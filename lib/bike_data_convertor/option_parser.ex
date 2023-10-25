@@ -3,6 +3,8 @@ defmodule BikeDataConvertor.OptionParser do
   A command-line option parser
   """
 
+  require Logger
+
   @doc ~S"""
   Parses command arguments, returns an error if
   required arguments are not supplied and sets the logging level
