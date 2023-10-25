@@ -3,6 +3,8 @@ defmodule BikeDataConvertor.Fit2Gpx.CLI do
   Coverts .fit files to .gpx
   """
 
+  require Logger
+
   defstruct ~w(destination dry_run quiet source verbose)a
 
   @switches [
@@ -27,7 +29,7 @@ defmodule BikeDataConvertor.Fit2Gpx.CLI do
         convert(options)
         0
       {:error, message} ->
-        IO.puts "Error: #{message}"
+        Logger.error(message)
         1
     end
   end
