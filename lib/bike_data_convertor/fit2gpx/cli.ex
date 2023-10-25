@@ -35,6 +35,7 @@ defmodule BikeDataConvertor.Fit2Gpx.CLI do
   end
 
   defp convert(options) do
+    Logger.debug("converting '#{options.source}' to '#{options.destination}'")
     {:ok, data} = File.read(options.source)
     {:ok, fit} = Fit.from_binary(data)
     {:ok} = Fit.Gpx.save(fit, options.destination)
