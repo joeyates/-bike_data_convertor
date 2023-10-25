@@ -165,7 +165,7 @@ defmodule Fit.Message.Record do
     lon = record.position_long / @coordinate_scaling
     ele = (record.altitude - 3000) * 0.18652265 + 93
     time = DateTime.from_unix!(@timestamp_offset + record.timestamp)
-    speed = record.speed / 100.0
+    speed = if record.speed, do: record.speed / 100.0
     power = record.power
 
     trkpt = """
