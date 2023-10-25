@@ -20,11 +20,11 @@ defmodule BikeDataConvertor.Fit2Gpx.CLI do
   @callback run([String.t()]) :: {:ok}
   def run(args) do
     case BikeDataConvertor.OptionParser.run(
-          args,
-          switches: @switches,
-          required: @required,
-          struct: __MODULE__
-        ) do
+      args,
+      switches: @switches,
+      required: @required,
+      struct: __MODULE__
+    ) do
       {:ok, options, []} ->
         convert(options)
         0
