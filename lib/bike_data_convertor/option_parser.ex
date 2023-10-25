@@ -97,13 +97,13 @@ defmodule BikeDataConvertor.OptionParser do
   defp optionally_build_struct(named, _opts), do: {:ok, named}
 
   defp setup_logger(named) do
-    verbose = Map.get(named, :verbose, 1)
+    verbose = Map.get(named, :verbose, 0)
     quiet = Map.get(named, :quiet, false)
 
     numeric_level = if quiet do
       0
     else
-      verbose
+      1 + verbose
     end
 
     level =
