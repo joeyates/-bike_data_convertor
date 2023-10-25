@@ -19,11 +19,15 @@ defmodule BikeDataConvertor.MixProject do
 
   # Run "mix help compile.app" to learn about applications.
   def application do
+    application = [
+      extra_applications: [:logger]
+    ]
+
     build_cli = System.get_env("BUILD_BAKEWARE")
     if build_cli do
-      [{:mod, {BikeDataConvertor.CLI, []}}]
+      [{:mod, {BikeDataConvertor.CLI, []}} | application]
     else
-      []
+      application
     end
   end
 
