@@ -3,4 +3,4 @@
 set -euxo pipefail
 
 podman build --file container/bakeware-linux-build.Containerfile --tag bdc-bakeware:latest .
-podman run -v `pwd`:/app/_build/prod/rel/bakeware -e MIX_ENV=prod -ti bdc-bakeware:latest mix release
+podman run -v `pwd`:/app/_build/prod/rel/bakeware -e MIX_ENV=prod -e BUILD_BAKEWARE=1 -ti bdc-bakeware:latest mix release
