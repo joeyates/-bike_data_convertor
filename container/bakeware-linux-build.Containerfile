@@ -4,6 +4,14 @@
 
 FROM debian:buster-slim
 
+# Installing the dependency packages takes 90% of the time
+# so we do it first to allow quick builds of images
+# with varied options.
+
+RUN \
+  apt-get update && \
+  apt-get install -y curl libncurses5 procps build-essential zstd unzip locales
+
 # Set up workspace
 WORKDIR /app
 
@@ -21,8 +29,6 @@ ENV LC_ALL=en_US.UTF-8
 
 # Set up Erlang and Elixir
 RUN \
-  apt-get update && \
-  apt-get install -y curl libncurses5 procps build-essential zstd unzip locales && \
   curl -O $ERLANG_URL/erlang-base_$PACKAGE && \
   curl -O $ERLANG_URL/erlang-ssl_$PACKAGE && \
   curl -O $ERLANG_URL/erlang-crypto_$PACKAGE && \
@@ -41,9 +47,8 @@ RUN \
   mix local.hex --force && \
   mix local.rebar --force
 
-# Copy code
+# Install Elixir Dependencies
 COPY ../mix.* /app/
-COPY ../lib /app/lib/
-
-# Prepare build
 RUN mix deps.get
+
+COPY ../lib /app/lib/
