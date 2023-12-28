@@ -21,7 +21,9 @@ defmodule Fit.Gpx do
         """
       )
 
-      Enum.map(records, fn record ->
+      records
+      |> Enum.filter(&Record.has_position?/1)
+      |> Enum.map(fn record ->
         {:ok, trkpt} = Record.to_gpx(record)
         IO.write(file, trkpt)
       end)

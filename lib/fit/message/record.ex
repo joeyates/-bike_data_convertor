@@ -160,6 +160,10 @@ defmodule Fit.Message.Record do
 
   def fields, do: @fields
 
+  def has_position?(%__MODULE__{} = record) do
+    record.position_lat && record.position_long
+  end
+
   def to_gpx(%__MODULE__{} = record) do
     lat = record.position_lat / @coordinate_scaling
     lon = record.position_long / @coordinate_scaling
